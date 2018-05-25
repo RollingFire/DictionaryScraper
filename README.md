@@ -1,2 +1,1 @@
-# DictionaryScraper
-Counts the number of times a word in used to describe other words in the dictionary.
+To soothe my curiosity of which word is used most often to discribe words in the dictionary, I created a web scrapper to scrap dictionary.com to find out for me. It turns out that other than words such as 'a', 'in', 'by', 'is', 'the', 'for', etc, the most used words for dicriptions on dictionary.com as of 4/15/18 are 'expecially' and 'person'.
