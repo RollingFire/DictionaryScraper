@@ -1,7 +1,7 @@
 '''
 By Austin Dorsey
 Started: 4/9/18
-Last modified 4/15/18
+Last modified 6/9/18
 To soothe my curiousity of what is the most used word used to descride another 
 word in the dictionary. Dictionary used is dictionary.com
 '''
@@ -16,13 +16,16 @@ import requests
 def read_dictionary(dictionary, max_words = 0, start_letter = 'a', end_letter = 'z'):
     '''Gets all the listed words in the letter range upto the number of max_words.'''
     num_words = 0
-    for l in range(ord(start_letter), ord(end_letter) + 1):
+    for letter in range(ord(start_letter), ord(end_letter) + 1):
+        #The firstword is used to know when all the words for the letter has been gathered.
+        #If there are 5 pages, the 6th page would really be the 1st page and would read the
+        #first word again.
         first_word = ""
         x = 0
         while True:
             x += 1 
-            print(chr(l) + ' - ' + str(x))
-            url = 'http://www.dictionary.com/list/' + chr(l) + '/' + str(x)
+            print(chr(letter) + ' - ' + str(x))
+            url = 'http://www.dictionary.com/list/' + chr(letter) + '/' + str(x)
             try:
                 page = requests.get(url, timeout=30)
             except:
@@ -40,6 +43,7 @@ def read_dictionary(dictionary, max_words = 0, start_letter = 'a', end_letter = 
                 for word in temp_words:
                     if num_words >= max_words and max_words != 0:
                         return
+                    #Removes words with more than one word and abriviations.
                     if word.find(' ') != -1 or word.find('.') != -1:
                         continue
                     num_words += 1
